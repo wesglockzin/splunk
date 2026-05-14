@@ -1,0 +1,82 @@
+{
+  "links": {
+    "create": "/servicesNS/your-username/search/data/ui/views/_new",
+    "_reload": "/servicesNS/your-username/search/data/ui/views/_reload",
+    "_acl": "/servicesNS/your-username/search/data/ui/views/_acl"
+  },
+  "origin": "https://127.0.0.1:8089/servicesNS/your-username/search/data/ui/views",
+  "updated": "2026-03-23T17:04:00-04:00",
+  "generator": {
+    "build": "237ebbd22314",
+    "version": "9.4.3"
+  },
+  "entry": [
+    {
+      "name": "duo_mfa_trends_v2",
+      "id": "https://127.0.0.1:8089/servicesNS/nobody/search/data/ui/views/duo_mfa_trends_v2",
+      "updated": "2026-03-16T15:31:22-04:00",
+      "links": {
+        "alternate": "/servicesNS/nobody/search/data/ui/views/duo_mfa_trends_v2",
+        "list": "/servicesNS/nobody/search/data/ui/views/duo_mfa_trends_v2",
+        "_reload": "/servicesNS/nobody/search/data/ui/views/duo_mfa_trends_v2/_reload",
+        "edit": "/servicesNS/nobody/search/data/ui/views/duo_mfa_trends_v2",
+        "remove": "/servicesNS/nobody/search/data/ui/views/duo_mfa_trends_v2",
+        "move": "/servicesNS/nobody/search/data/ui/views/duo_mfa_trends_v2/move"
+      },
+      "author": "your-username",
+      "acl": {
+        "app": "search",
+        "can_change_perms": true,
+        "can_list": true,
+        "can_share_app": true,
+        "can_share_global": false,
+        "can_share_user": true,
+        "can_write": true,
+        "modifiable": true,
+        "owner": "your-username",
+        "perms": {
+          "read": [
+            "*"
+          ],
+          "write": [
+            "admin",
+            "power"
+          ]
+        },
+        "removable": true,
+        "sharing": "app"
+      },
+      "fields": {
+        "required": [
+          "eai:data"
+        ],
+        "optional": [
+          "eai:changelog",
+          "eai:type"
+        ],
+        "wildcard": []
+      },
+      "content": {
+        "description": "Duo multi-factor authentication trends over time. Breaks down MFA success and failure rates by reason, authentication factor, device OS, and application.",
+        "disabled": false,
+        "eai:acl": null,
+        "eai:appName": "search",
+        "eai:data": "<dashboard version=\"2\" theme=\"light\">\n    <label>DUO: MFA Trends v2</label>\n    <description>Duo multi-factor authentication trends over time. Breaks down MFA success and failure rates by reason, authentication factor, device OS, and application.</description>\n    <definition><![CDATA[\n{\n\t\"title\": \"DUO: MFA Trends v2\",\n\t\"description\": \"Duo multi-factor authentication trends over time. Breaks down MFA success and failure rates by reason, authentication factor, device OS, and application.\",\n\t\"inputs\": {\n\t\t\"input_field\": {\n\t\t\t\"options\": {\n\t\t\t\t\"defaultValue\": \"reason\",\n\t\t\t\t\"items\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"label\": \"Reason\",\n\t\t\t\t\t\t\"value\": \"reason\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"label\": \"Factor\",\n\t\t\t\t\t\t\"value\": \"factor\"\n\t\t\t\t\t}\n\t\t\t\t],\n\t\t\t\t\"token\": \"field\"\n\t\t\t},\n\t\t\t\"title\": \"Group By\",\n\t\t\t\"type\": \"input.dropdown\"\n\t\t},\n\t\t\"input_global_trp\": {\n\t\t\t\"options\": {\n\t\t\t\t\"defaultValue\": \"-24h@h,now\",\n\t\t\t\t\"token\": \"global_time\"\n\t\t\t},\n\t\t\t\"title\": \"Global Time Range\",\n\t\t\t\"type\": \"input.timerange\"\n\t\t},\n\t\t\"input_os\": {\n\t\t\t\"options\": {\n\t\t\t\t\"defaultValue\": \"*\",\n\t\t\t\t\"items\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"label\": \"All\",\n\t\t\t\t\t\t\"value\": \"*\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"label\": \"Android\",\n\t\t\t\t\t\t\"value\": \"Android\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"label\": \"Mac OS X\",\n\t\t\t\t\t\t\"value\": \"Mac OS X\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"label\": \"Windows\",\n\t\t\t\t\t\t\"value\": \"Windows\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"label\": \"iOS\",\n\t\t\t\t\t\t\"value\": \"iOS\"\n\t\t\t\t\t}\n\t\t\t\t],\n\t\t\t\t\"token\": \"os\"\n\t\t\t},\n\t\t\t\"title\": \"Select OS\",\n\t\t\t\"type\": \"input.dropdown\"\n\t\t},\n\t\t\"input_result\": {\n\t\t\t\"options\": {\n\t\t\t\t\"defaultValue\": \"SUCCESS\",\n\t\t\t\t\"items\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"label\": \"Success\",\n\t\t\t\t\t\t\"value\": \"SUCCESS\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"label\": \"Failure\",\n\t\t\t\t\t\t\"value\": \"FAILURE\"\n\t\t\t\t\t}\n\t\t\t\t],\n\t\t\t\t\"token\": \"result\"\n\t\t\t},\n\t\t\t\"title\": \"Result\",\n\t\t\t\"type\": \"input.dropdown\"\n\t\t},\n\t\t\"input_username\": {\n\t\t\t\"options\": {\n\t\t\t\t\"defaultValue\": \"*\",\n\t\t\t\t\"token\": \"username\"\n\t\t\t},\n\t\t\t\"title\": \"Username (default: *)\",\n\t\t\t\"type\": \"input.text\"\n\t\t}\n\t},\n\t\"defaults\": {\n\t\t\"dataSources\": {\n\t\t\t\"ds.search\": {\n\t\t\t\t\"options\": {\n\t\t\t\t\t\"queryParameters\": {\n\t\t\t\t\t\t\"earliest\": \"$global_time.earliest$\",\n\t\t\t\t\t\t\"latest\": \"$global_time.latest$\"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t},\n\t\"visualizations\": {\n\t\t\"viz_apps\": {\n\t\t\t\"containerOptions\": {},\n\t\t\t\"dataSources\": {\n\t\t\t\t\"primary\": \"ds_apps\"\n\t\t\t},\n\t\t\t\"options\": {},\n\t\t\t\"showLastUpdated\": false,\n\t\t\t\"showProgressBar\": false,\n\t\t\t\"title\": \"Applications\",\n\t\t\t\"type\": \"splunk.table\"\n\t\t},\n\t\t\"viz_pie\": {\n\t\t\t\"containerOptions\": {},\n\t\t\t\"dataSources\": {\n\t\t\t\t\"primary\": \"ds_breakdown\"\n\t\t\t},\n\t\t\t\"options\": {},\n\t\t\t\"showLastUpdated\": false,\n\t\t\t\"showProgressBar\": false,\n\t\t\t\"title\": \"Breakdown\",\n\t\t\t\"type\": \"splunk.pie\"\n\t\t},\n\t\t\"viz_table\": {\n\t\t\t\"containerOptions\": {},\n\t\t\t\"dataSources\": {\n\t\t\t\t\"primary\": \"ds_breakdown\"\n\t\t\t},\n\t\t\t\"options\": {},\n\t\t\t\"showLastUpdated\": false,\n\t\t\t\"showProgressBar\": false,\n\t\t\t\"title\": \"Detail Table\",\n\t\t\t\"type\": \"splunk.table\"\n\t\t},\n\t\t\"viz_timechart\": {\n\t\t\t\"containerOptions\": {},\n\t\t\t\"dataSources\": {\n\t\t\t\t\"primary\": \"ds_timechart\"\n\t\t\t},\n\t\t\t\"options\": {},\n\t\t\t\"showLastUpdated\": false,\n\t\t\t\"showProgressBar\": false,\n\t\t\t\"title\": \"MFA Trends Over Time\",\n\t\t\t\"type\": \"splunk.column\"\n\t\t},\n\t\t\"viz_total\": {\n\t\t\t\"containerOptions\": {},\n\t\t\t\"dataSources\": {\n\t\t\t\t\"primary\": \"ds_total\"\n\t\t\t},\n\t\t\t\"showLastUpdated\": false,\n\t\t\t\"showProgressBar\": false,\n\t\t\t\"title\": \"Total MFA Events\",\n\t\t\t\"type\": \"splunk.singlevalue\"\n\t\t}\n\t},\n\t\"dataSources\": {\n\t\t\"ds_apps\": {\n\t\t\t\"name\": \"Top applications\",\n\t\t\t\"options\": {\n\t\t\t\t\"query\": \"index=duo result=\\\"$result$\\\" | search username=$username$ | search access_device.os=$os$ | stats count by integration | sort - count\",\n\t\t\t\t\"queryParameters\": {\n\t\t\t\t\t\"earliest\": \"$global_time.earliest$\",\n\t\t\t\t\t\"latest\": \"$global_time.latest$\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"type\": \"ds.search\"\n\t\t},\n\t\t\"ds_breakdown\": {\n\t\t\t\"name\": \"Breakdown by field\",\n\t\t\t\"options\": {\n\t\t\t\t\"query\": \"index=duo result=\\\"$result$\\\" | search username=$username$ | search access_device.os=$os$ | stats count by $field$\",\n\t\t\t\t\"queryParameters\": {\n\t\t\t\t\t\"earliest\": \"$global_time.earliest$\",\n\t\t\t\t\t\"latest\": \"$global_time.latest$\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"type\": \"ds.search\"\n\t\t},\n\t\t\"ds_timechart\": {\n\t\t\t\"name\": \"Timechart by field\",\n\t\t\t\"options\": {\n\t\t\t\t\"query\": \"index=duo result=\\\"$result$\\\" | search username=$username$ | search access_device.os=$os$ | timechart span=1m count by $field$\",\n\t\t\t\t\"queryParameters\": {\n\t\t\t\t\t\"earliest\": \"$global_time.earliest$\",\n\t\t\t\t\t\"latest\": \"$global_time.latest$\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"type\": \"ds.search\"\n\t\t},\n\t\t\"ds_total\": {\n\t\t\t\"name\": \"Total count\",\n\t\t\t\"options\": {\n\t\t\t\t\"query\": \"index=duo result=\\\"$result$\\\" | search username=$username$ | search access_device.os=$os$ | stats count AS total\",\n\t\t\t\t\"queryParameters\": {\n\t\t\t\t\t\"earliest\": \"$global_time.earliest$\",\n\t\t\t\t\t\"latest\": \"$global_time.latest$\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"type\": \"ds.search\"\n\t\t}\n\t},\n\t\"layout\": {\n\t\t\"globalInputs\": [\n\t\t\t\"input_global_trp\",\n\t\t\t\"input_result\",\n\t\t\t\"input_field\",\n\t\t\t\"input_username\",\n\t\t\t\"input_os\"\n\t\t],\n\t\t\"layoutDefinitions\": {\n\t\t\t\"layout_1\": {\n\t\t\t\t\"options\": {\n\t\t\t\t\t\"display\": \"auto\",\n\t\t\t\t\t\"height\": 960,\n\t\t\t\t\t\"width\": 2100\n\t\t\t\t},\n\t\t\t\t\"structure\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"item\": \"viz_timechart\",\n\t\t\t\t\t\t\"position\": {\n\t\t\t\t\t\t\t\"h\": 450,\n\t\t\t\t\t\t\t\"w\": 1260,\n\t\t\t\t\t\t\t\"x\": 0,\n\t\t\t\t\t\t\t\"y\": 0\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"type\": \"block\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"item\": \"viz_pie\",\n\t\t\t\t\t\t\"position\": {\n\t\t\t\t\t\t\t\"h\": 450,\n\t\t\t\t\t\t\t\"w\": 630,\n\t\t\t\t\t\t\t\"x\": 0,\n\t\t\t\t\t\t\t\"y\": 460\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"type\": \"block\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"item\": \"viz_apps\",\n\t\t\t\t\t\t\"position\": {\n\t\t\t\t\t\t\t\"h\": 450,\n\t\t\t\t\t\t\t\"w\": 620,\n\t\t\t\t\t\t\t\"x\": 640,\n\t\t\t\t\t\t\t\"y\": 460\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"type\": \"block\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"item\": \"viz_total\",\n\t\t\t\t\t\t\"position\": {\n\t\t\t\t\t\t\t\"h\": 190,\n\t\t\t\t\t\t\t\"w\": 570,\n\t\t\t\t\t\t\t\"x\": 1270,\n\t\t\t\t\t\t\t\"y\": 0\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"type\": \"block\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"item\": \"viz_table\",\n\t\t\t\t\t\t\"position\": {\n\t\t\t\t\t\t\t\"h\": 710,\n\t\t\t\t\t\t\t\"w\": 570,\n\t\t\t\t\t\t\t\"x\": 1270,\n\t\t\t\t\t\t\t\"y\": 200\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"type\": \"block\"\n\t\t\t\t\t}\n\t\t\t\t],\n\t\t\t\t\"type\": \"absolute\"\n\t\t\t}\n\t\t},\n\t\t\"tabs\": {\n\t\t\t\"items\": [\n\t\t\t\t{\n\t\t\t\t\t\"label\": \"MFA Trends\",\n\t\t\t\t\t\"layoutId\": \"layout_1\"\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t}\n}\n    ]]></definition>\n    <meta type=\"hiddenElements\"><![CDATA[\n{\n\t\"hideEdit\": false,\n\t\"hideOpenInSearch\": false,\n\t\"hideExport\": false\n}\n    ]]></meta>\n</dashboard>",
+        "eai:digest": "8a8565a5e4a9fe187d6c665e301d25b4",
+        "eai:type": "views",
+        "eai:userName": "your-username",
+        "isDashboard": true,
+        "isVisible": true,
+        "label": "DUO: MFA Trends v2",
+        "rootNode": "dashboard",
+        "version": "2"
+      }
+    }
+  ],
+  "paging": {
+    "total": 1,
+    "perPage": 30,
+    "offset": 0
+  },
+  "messages": []
+}

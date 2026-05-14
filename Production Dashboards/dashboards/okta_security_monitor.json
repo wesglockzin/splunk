@@ -1,0 +1,74 @@
+{
+  "links": {
+    "create": "/servicesNS/your-username/search/data/ui/views/_new",
+    "_reload": "/servicesNS/your-username/search/data/ui/views/_reload",
+    "_acl": "/servicesNS/your-username/search/data/ui/views/_acl"
+  },
+  "origin": "https://127.0.0.1:8089/servicesNS/your-username/search/data/ui/views",
+  "updated": "2026-04-17T14:04:26-04:00",
+  "generator": {
+    "build": "237ebbd22314",
+    "version": "9.4.3"
+  },
+  "entry": [
+    {
+      "name": "okta_security_monitor",
+      "id": "https://127.0.0.1:8089/servicesNS/your-username/search/data/ui/views/okta_security_monitor",
+      "updated": "2026-04-16T17:36:07-04:00",
+      "links": {
+        "alternate": "/servicesNS/your-username/search/data/ui/views/okta_security_monitor",
+        "list": "/servicesNS/your-username/search/data/ui/views/okta_security_monitor",
+        "_reload": "/servicesNS/your-username/search/data/ui/views/okta_security_monitor/_reload",
+        "edit": "/servicesNS/your-username/search/data/ui/views/okta_security_monitor",
+        "remove": "/servicesNS/your-username/search/data/ui/views/okta_security_monitor",
+        "move": "/servicesNS/your-username/search/data/ui/views/okta_security_monitor/move"
+      },
+      "author": "your-username",
+      "acl": {
+        "app": "search",
+        "can_change_perms": true,
+        "can_list": true,
+        "can_share_app": true,
+        "can_share_global": false,
+        "can_share_user": true,
+        "can_write": true,
+        "modifiable": true,
+        "owner": "your-username",
+        "perms": null,
+        "removable": true,
+        "sharing": "user"
+      },
+      "fields": {
+        "required": [
+          "eai:data"
+        ],
+        "optional": [
+          "eai:changelog",
+          "eai:type"
+        ],
+        "wildcard": []
+      },
+      "content": {
+        "description": "Failed logins, lockouts, credential spray detection, and API token activity.",
+        "disabled": false,
+        "eai:acl": null,
+        "eai:appName": "search",
+        "eai:data": "<dashboard version=\"2\" theme=\"light\">\n    <label>Okta: Security Monitor</label>\n    <description>Failed logins, lockouts, credential spray detection, and API token activity.</description>\n    <definition><![CDATA[{\"title\": \"Okta: Security Monitor\", \"description\": \"Failed logins, lockouts, credential spray detection, and API token activity.\", \"inputs\": {\"input_global_trp\": {\"options\": {\"defaultValue\": \"-24h@h,now\", \"token\": \"global_time\"}, \"title\": \"Time Range\", \"type\": \"input.timerange\"}}, \"defaults\": {\"dataSources\": {\"ds.search\": {\"options\": {\"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}}}}, \"visualizations\": {\"viz_failed_logins\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_failed_logins\"}, \"options\": {\"sparklineDisplay\": \"off\", \"trendDisplay\": \"off\", \"majorColor\": \"#c12f28\"}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Failed Logins\", \"type\": \"splunk.singlevalue\"}, \"viz_lockouts\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_lockouts\"}, \"options\": {\"sparklineDisplay\": \"off\", \"trendDisplay\": \"off\", \"majorColor\": \"#c12f28\"}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Account Lockouts\", \"type\": \"splunk.singlevalue\"}, \"viz_spray_ips\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_spray_ips\"}, \"options\": {\"sparklineDisplay\": \"off\", \"trendDisplay\": \"off\", \"majorColor\": \"#c97a00\"}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Suspicious IPs (3+ users failed)\", \"type\": \"splunk.singlevalue\"}, \"viz_api_tokens\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_api_token_count\"}, \"options\": {\"sparklineDisplay\": \"off\", \"trendDisplay\": \"off\"}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"API Calls (Programmatic)\", \"type\": \"splunk.singlevalue\"}, \"viz_fail_trend\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_fail_trend\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Failed Auth Events Over Time\", \"type\": \"splunk.column\"}, \"viz_top_failed_users\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_top_failed_users\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Top Failed Login Users\", \"type\": \"splunk.table\"}, \"viz_top_failed_ips\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_top_failed_ips\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Top Failure Source IPs (Spray Risk)\", \"type\": \"splunk.table\"}, \"viz_api_token_events\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_api_token_events\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"API Activity by Actor & Action\", \"type\": \"splunk.table\"}, \"viz_recent_lockouts\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_recent_lockouts\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Recent Lockouts & Unlocks\", \"type\": \"splunk.table\"}}, \"dataSources\": {\"ds_failed_logins\": {\"name\": \"Failed login count\", \"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log (eventType=user.authentication.sso OR eventType=user.authentication.auth_via_IDP OR eventType=user.session.start OR eventType=user.authentication.auth_via_mfa) | spath output=outcome_result path=\\\"outcome.result\\\" | search outcome_result=FAILURE | stats count AS total\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_lockouts\": {\"name\": \"Account lockout count\", \"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log eventType=user.account.lock | stats count AS total\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_spray_ips\": {\"name\": \"Suspicious IPs hitting 3+ distinct users\", \"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log (eventType=user.authentication.sso OR eventType=user.authentication.auth_via_IDP OR eventType=user.session.start) | spath output=outcome_result path=\\\"outcome.result\\\" | spath output=client_ip path=\\\"client.ipAddress\\\" | spath output=username path=\\\"actor.alternateId\\\" | search outcome_result=FAILURE client_ip=* username!=system@okta.com | stats dc(username) AS distinct_users by client_ip | where distinct_users >= 3 | stats count AS total\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_api_token_count\": {\"name\": \"API token event count\", \"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log | spath output=ua path=\\\"client.userAgent.rawUserAgent\\\" | where match(lower(ua),\\\"python|curl|requests|okta-sdk|powershell\\\") | stats count AS total\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\", \"query\": \"index=okta sourcetype=OktaIM2:log | spath output=ua path=\\\"client.userAgent.rawUserAgent\\\" | where match(lower(ua),\\\"python|curl|requests|okta-sdk|powershell\\\") | stats count AS total\"}}, \"type\": \"ds.search\"}, \"ds_fail_trend\": {\"name\": \"Failed auth trend\", \"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log (eventType=user.authentication.sso OR eventType=user.authentication.auth_via_IDP OR eventType=user.session.start OR eventType=user.authentication.auth_via_mfa OR eventType=user.account.lock) | spath output=outcome_result path=\\\"outcome.result\\\" | eval event_label=case(eventType=\\\"user.account.lock\\\", \\\"Account Lockout\\\", outcome_result=\\\"FAILURE\\\", \\\"Auth Failure\\\", true(), null()) | search event_label=* | timechart span=1h count by event_label\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_top_failed_users\": {\"name\": \"Top failed login users\", \"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log (eventType=user.authentication.sso OR eventType=user.authentication.auth_via_IDP OR eventType=user.session.start OR eventType=user.authentication.auth_via_mfa) | spath output=outcome_result path=\\\"outcome.result\\\" | spath output=username path=\\\"actor.alternateId\\\" | spath output=outcome_reason path=\\\"outcome.reason\\\" | search outcome_result=FAILURE username!=system@okta.com | stats count AS failures, values(outcome_reason) AS reasons by username | sort -failures | head 20 | rename username AS User, failures AS Failures, reasons AS \\\"Failure Reasons\\\"\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_top_failed_ips\": {\"name\": \"Top failure source IPs\", \"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log (eventType=user.authentication.sso OR eventType=user.authentication.auth_via_IDP OR eventType=user.session.start) | spath output=outcome_result path=\\\"outcome.result\\\" | spath output=client_ip path=\\\"client.ipAddress\\\" | spath output=username path=\\\"actor.alternateId\\\" | spath output=geo_city path=\\\"client.geographicalContext.city\\\" | spath output=geo_country path=\\\"client.geographicalContext.country\\\" | search outcome_result=FAILURE client_ip=* username!=system@okta.com | stats count AS failures, dc(username) AS distinct_users, values(geo_city) AS city, values(geo_country) AS country by client_ip | sort -distinct_users | head 20 | rename client_ip AS \\\"Source IP\\\", failures AS Failures, distinct_users AS \\\"Distinct Users\\\", city AS City, country AS Country\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_api_token_events\": {\"name\": \"API token activity\", \"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log | spath output=actor path=\\\"actor.alternateId\\\" | spath output=ua path=\\\"client.userAgent.rawUserAgent\\\" | where match(lower(ua),\\\"python|curl|requests|okta-sdk|powershell\\\") | stats count AS calls, max(_time) as last_seen by actor, eventType | eval last_seen=strftime(last_seen,\\\"%Y-%m-%d %H:%M\\\") | sort -calls | head 20 | rename actor AS \\\"Actor\\\", eventType AS \\\"Action\\\", calls AS \\\"Calls\\\", last_seen AS \\\"Last Seen\\\"\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\", \"query\": \"index=okta sourcetype=OktaIM2:log | spath output=actor path=\\\"actor.alternateId\\\" | spath output=ua path=\\\"client.userAgent.rawUserAgent\\\" | where match(lower(ua),\\\"python|curl|requests|okta-sdk|powershell\\\") | stats count AS calls, max(_time) as last_seen by actor, eventType | eval last_seen=strftime(last_seen,\\\"%Y-%m-%d %H:%M\\\") | sort -calls | head 20 | rename actor AS \\\"Actor\\\", eventType AS \\\"Action\\\", calls AS \\\"Calls\\\", last_seen AS \\\"Last Seen\\\"\"}}, \"type\": \"ds.search\"}, \"ds_recent_lockouts\": {\"name\": \"Recent lockouts and unlocks\", \"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log (eventType=user.account.lock OR eventType=user.account.unlock_by_admin OR eventType=user.account.unlock_token_issued OR eventType=user.account.reset_password) | spath output=username path=\\\"target{0}.alternateId\\\" | spath output=actor path=\\\"actor.alternateId\\\" | spath output=client_ip path=\\\"client.ipAddress\\\" | eval action=case(eventType=\\\"user.account.lock\\\", \\\"Locked Out\\\", eventType=\\\"user.account.unlock_by_admin\\\", \\\"Unlocked (Admin)\\\", eventType=\\\"user.account.unlock_token_issued\\\", \\\"Unlock Token Issued\\\", eventType=\\\"user.account.reset_password\\\", \\\"Password Reset\\\", true(), eventType) | table _time, username, action, actor, client_ip | sort -_time | head 50 | rename username AS User, action AS Action, actor AS \\\"Performed By\\\", client_ip AS \\\"Client IP\\\"\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}}, \"layout\": {\"globalInputs\": [\"input_global_trp\"], \"layoutDefinitions\": {\"layout_1\": {\"options\": {\"display\": \"auto\", \"height\": 1290, \"width\": 2100}, \"structure\": [{\"item\": \"viz_failed_logins\", \"position\": {\"h\": 160, \"w\": 510, \"x\": 0, \"y\": 0}, \"type\": \"block\"}, {\"item\": \"viz_lockouts\", \"position\": {\"h\": 160, \"w\": 510, \"x\": 520, \"y\": 0}, \"type\": \"block\"}, {\"item\": \"viz_spray_ips\", \"position\": {\"h\": 160, \"w\": 540, \"x\": 1040, \"y\": 0}, \"type\": \"block\"}, {\"item\": \"viz_api_tokens\", \"position\": {\"h\": 160, \"w\": 510, \"x\": 1590, \"y\": 0}, \"type\": \"block\"}, {\"item\": \"viz_fail_trend\", \"position\": {\"h\": 360, \"w\": 2100, \"x\": 0, \"y\": 170}, \"type\": \"block\"}, {\"item\": \"viz_top_failed_users\", \"position\": {\"h\": 360, \"w\": 1040, \"x\": 0, \"y\": 540}, \"type\": \"block\"}, {\"item\": \"viz_top_failed_ips\", \"position\": {\"h\": 360, \"w\": 1050, \"x\": 1050, \"y\": 540}, \"type\": \"block\"}, {\"item\": \"viz_api_token_events\", \"position\": {\"h\": 360, \"w\": 1040, \"x\": 0, \"y\": 910}, \"type\": \"block\"}, {\"item\": \"viz_recent_lockouts\", \"position\": {\"h\": 360, \"w\": 1050, \"x\": 1050, \"y\": 910}, \"type\": \"block\"}], \"type\": \"absolute\"}}, \"tabs\": {\"items\": [{\"label\": \"Security Monitor\", \"layoutId\": \"layout_1\"}]}}}]]></definition>\n    <meta type=\"hiddenElements\"><![CDATA[\n{\n\t\"hideEdit\": false,\n\t\"hideOpenInSearch\": false,\n\t\"hideExport\": false\n}\n    ]]></meta>\n</dashboard>",
+        "eai:digest": "48fb0c539eaeeb2f5050648f92d3e5fe",
+        "eai:type": "views",
+        "eai:userName": "your-username",
+        "isDashboard": true,
+        "isVisible": true,
+        "label": "Okta: Security Monitor",
+        "rootNode": "dashboard",
+        "version": "2"
+      }
+    }
+  ],
+  "paging": {
+    "total": 1,
+    "perPage": 30,
+    "offset": 0
+  },
+  "messages": []
+}

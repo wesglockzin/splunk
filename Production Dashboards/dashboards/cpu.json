@@ -1,0 +1,74 @@
+{
+  "links": {
+    "create": "/servicesNS/your-username/search/data/ui/views/_new",
+    "_reload": "/servicesNS/your-username/search/data/ui/views/_reload",
+    "_acl": "/servicesNS/your-username/search/data/ui/views/_acl"
+  },
+  "origin": "https://127.0.0.1:8089/servicesNS/your-username/search/data/ui/views",
+  "updated": "2026-03-23T17:04:00-04:00",
+  "generator": {
+    "build": "237ebbd22314",
+    "version": "9.4.3"
+  },
+  "entry": [
+    {
+      "name": "cpu",
+      "id": "https://127.0.0.1:8089/servicesNS/your-username/search/data/ui/views/cpu",
+      "updated": "2026-03-16T15:29:16-04:00",
+      "links": {
+        "alternate": "/servicesNS/your-username/search/data/ui/views/cpu",
+        "list": "/servicesNS/your-username/search/data/ui/views/cpu",
+        "_reload": "/servicesNS/your-username/search/data/ui/views/cpu/_reload",
+        "edit": "/servicesNS/your-username/search/data/ui/views/cpu",
+        "remove": "/servicesNS/your-username/search/data/ui/views/cpu",
+        "move": "/servicesNS/your-username/search/data/ui/views/cpu/move"
+      },
+      "author": "your-username",
+      "acl": {
+        "app": "search",
+        "can_change_perms": true,
+        "can_list": true,
+        "can_share_app": true,
+        "can_share_global": false,
+        "can_share_user": true,
+        "can_write": true,
+        "modifiable": true,
+        "owner": "your-username",
+        "perms": null,
+        "removable": true,
+        "sharing": "user"
+      },
+      "fields": {
+        "required": [
+          "eai:data"
+        ],
+        "optional": [
+          "eai:changelog",
+          "eai:type"
+        ],
+        "wildcard": []
+      },
+      "content": {
+        "description": "CPU and memory utilization for all ADFS servers across both datacenters. Use to identify resource pressure during high-traffic periods or incidents.",
+        "disabled": false,
+        "eai:acl": null,
+        "eai:appName": "search",
+        "eai:data": "<dashboard version=\"2\" theme=\"light\">\n    <label>ADFS: Server Resource Monitor</label>\n    <description>CPU and memory utilization for all ADFS servers across both datacenters. Use to identify resource pressure during high-traffic periods or incidents.</description>\n    <definition><![CDATA[\n{\n\t\"title\": \"ADFS: Server Resource Monitor\",\n\t\"description\": \"CPU and memory utilization for all ADFS servers across both datacenters. Use to identify resource pressure during high-traffic periods or incidents.\",\n\t\"inputs\": {\n\t\t\"input_global_trp\": {\n\t\t\t\"options\": {\n\t\t\t\t\"defaultValue\": \"-24h@h,now\",\n\t\t\t\t\"token\": \"global_time\"\n\t\t\t},\n\t\t\t\"title\": \"Global Time Range\",\n\t\t\t\"type\": \"input.timerange\"\n\t\t}\n\t},\n\t\"defaults\": {\n\t\t\"dataSources\": {\n\t\t\t\"ds.search\": {\n\t\t\t\t\"options\": {\n\t\t\t\t\t\"queryParameters\": {\n\t\t\t\t\t\t\"earliest\": \"$global_time.earliest$\",\n\t\t\t\t\t\t\"latest\": \"$global_time.latest$\"\n\t\t\t\t\t}\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\t},\n\t\"visualizations\": {\n\t\t\"viz_cpu\": {\n\t\t\t\"dataSources\": {\n\t\t\t\t\"primary\": \"ds_cpu\"\n\t\t\t},\n\t\t\t\"options\": {\n\t\t\t\t\"dataValuesDisplay\": \"off\",\n\t\t\t\t\"legendDisplay\": \"right\",\n\t\t\t\t\"legendMode\": \"standard\",\n\t\t\t\t\"legendTruncation\": \"ellipsisMiddle\",\n\t\t\t\t\"lineWidth\": 2,\n\t\t\t\t\"nullValueDisplay\": \"gaps\",\n\t\t\t\t\"showIndependentYRanges\": false,\n\t\t\t\t\"showOverlayY2Axis\": false,\n\t\t\t\t\"showRoundedY2AxisLabels\": false,\n\t\t\t\t\"showSplitSeries\": false,\n\t\t\t\t\"showY2MajorGridLines\": true,\n\t\t\t\t\"xAxisLabelRotation\": 0,\n\t\t\t\t\"xAxisTitleVisibility\": \"show\",\n\t\t\t\t\"y2AxisAbbreviation\": \"auto\",\n\t\t\t\t\"y2AxisScale\": \"linear\",\n\t\t\t\t\"y2AxisTitleVisibility\": \"show\",\n\t\t\t\t\"yAxisAbbreviation\": \"auto\",\n\t\t\t\t\"yAxisScale\": \"linear\",\n\t\t\t\t\"yAxisTitleVisibility\": \"show\"\n\t\t\t},\n\t\t\t\"showLastUpdated\": false,\n\t\t\t\"showProgressBar\": false,\n\t\t\t\"title\": \"CPU Utilization (%) by Host\",\n\t\t\t\"type\": \"splunk.line\"\n\t\t},\n\t\t\"viz_cpu_peak\": {\n\t\t\t\"dataSources\": {\n\t\t\t\t\"primary\": \"ds_cpu_peak\"\n\t\t\t},\n\t\t\t\"showLastUpdated\": false,\n\t\t\t\"showProgressBar\": false,\n\t\t\t\"title\": \"Peak CPU Host\",\n\t\t\t\"type\": \"splunk.singlevalue\"\n\t\t},\n\t\t\"viz_cpu_top\": {\n\t\t\t\"dataSources\": {\n\t\t\t\t\"primary\": \"ds_cpu_top\"\n\t\t\t},\n\t\t\t\"options\": {\n\t\t\t\t\"labelDisplay\": \"valuesAndPercentage\"\n\t\t\t},\n\t\t\t\"showLastUpdated\": false,\n\t\t\t\"showProgressBar\": false,\n\t\t\t\"title\": \"Avg CPU % by Host\",\n\t\t\t\"type\": \"splunk.pie\"\n\t\t},\n\t\t\"viz_mem_lowest\": {\n\t\t\t\"dataSources\": {\n\t\t\t\t\"primary\": \"ds_mem_lowest\"\n\t\t\t},\n\t\t\t\"showLastUpdated\": false,\n\t\t\t\"showProgressBar\": false,\n\t\t\t\"title\": \"Lowest Available Memory Host\",\n\t\t\t\"type\": \"splunk.singlevalue\"\n\t\t},\n\t\t\"viz_mem_top\": {\n\t\t\t\"dataSources\": {\n\t\t\t\t\"primary\": \"ds_mem_top\"\n\t\t\t},\n\t\t\t\"options\": {\n\t\t\t\t\"labelDisplay\": \"valuesAndPercentage\"\n\t\t\t},\n\t\t\t\"showLastUpdated\": false,\n\t\t\t\"showProgressBar\": false,\n\t\t\t\"title\": \"Avg Available MBytes by Host\",\n\t\t\t\"type\": \"splunk.pie\"\n\t\t},\n\t\t\"viz_memory\": {\n\t\t\t\"dataSources\": {\n\t\t\t\t\"primary\": \"ds_memory\"\n\t\t\t},\n\t\t\t\"options\": {\n\t\t\t\t\"dataValuesDisplay\": \"off\",\n\t\t\t\t\"legendDisplay\": \"right\",\n\t\t\t\t\"legendMode\": \"standard\",\n\t\t\t\t\"legendTruncation\": \"ellipsisMiddle\",\n\t\t\t\t\"lineWidth\": 2,\n\t\t\t\t\"nullValueDisplay\": \"gaps\",\n\t\t\t\t\"showIndependentYRanges\": false,\n\t\t\t\t\"showOverlayY2Axis\": false,\n\t\t\t\t\"showRoundedY2AxisLabels\": false,\n\t\t\t\t\"showSplitSeries\": false,\n\t\t\t\t\"showY2MajorGridLines\": true,\n\t\t\t\t\"xAxisLabelRotation\": 0,\n\t\t\t\t\"xAxisTitleVisibility\": \"show\",\n\t\t\t\t\"y2AxisAbbreviation\": \"auto\",\n\t\t\t\t\"y2AxisScale\": \"linear\",\n\t\t\t\t\"y2AxisTitleVisibility\": \"show\",\n\t\t\t\t\"yAxisAbbreviation\": \"auto\",\n\t\t\t\t\"yAxisScale\": \"linear\",\n\t\t\t\t\"yAxisTitleVisibility\": \"show\"\n\t\t\t},\n\t\t\t\"showLastUpdated\": false,\n\t\t\t\"showProgressBar\": false,\n\t\t\t\"title\": \"Memory \u2014 Usage % and Available MBytes by Host\",\n\t\t\t\"type\": \"splunk.line\"\n\t\t}\n\t},\n\t\"dataSources\": {\n\t\t\"ds_cpu\": {\n\t\t\t\"name\": \"CPU utilization by host\",\n\t\t\t\"options\": {\n\t\t\t\t\"query\": \"index=perfmon (host=*-ess-sen-adf5* OR host=s-ess-sen-sso1* OR host=s-ess-sen-sso2*)\\n| timechart span=5m avg(\\\"%_Processor_Time\\\"), avg(cpu_load_percent) by host\",\n\t\t\t\t\"queryParameters\": {\n\t\t\t\t\t\"earliest\": \"$global_time.earliest$\",\n\t\t\t\t\t\"latest\": \"$global_time.latest$\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"type\": \"ds.search\"\n\t\t},\n\t\t\"ds_cpu_peak\": {\n\t\t\t\"name\": \"Peak CPU host\",\n\t\t\t\"options\": {\n\t\t\t\t\"query\": \"index=perfmon (host=*-ess-sen-adf5* OR host=s-ess-sen-sso1* OR host=s-ess-sen-sso2*)\\n| eval cpu = coalesce('%_Processor_Time', cpu_load_percent)\\n| where isnotnull(cpu)\\n| stats avg(cpu) as avg_cpu by host\\n| sort - avg_cpu\\n| head 1\\n| eval \\\"Peak CPU\\\" = host . \\\" | \\\" . round(avg_cpu,1) . \\\"%\\\"\\n| fields \\\"Peak CPU\\\"\",\n\t\t\t\t\"queryParameters\": {\n\t\t\t\t\t\"earliest\": \"$global_time.earliest$\",\n\t\t\t\t\t\"latest\": \"$global_time.latest$\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"type\": \"ds.search\"\n\t\t},\n\t\t\"ds_cpu_top\": {\n\t\t\t\"name\": \"Avg CPU by host\",\n\t\t\t\"options\": {\n\t\t\t\t\"query\": \"index=perfmon (host=*-ess-sen-adf5* OR host=s-ess-sen-sso1* OR host=s-ess-sen-sso2*)\\n| eval cpu = coalesce('%_Processor_Time', cpu_load_percent)\\n| where isnotnull(cpu)\\n| stats avg(cpu) as avg_cpu by host\\n| eval avg_cpu = round(avg_cpu, 1)\\n| sort - avg_cpu\",\n\t\t\t\t\"queryParameters\": {\n\t\t\t\t\t\"earliest\": \"$global_time.earliest$\",\n\t\t\t\t\t\"latest\": \"$global_time.latest$\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"type\": \"ds.search\"\n\t\t},\n\t\t\"ds_mem_lowest\": {\n\t\t\t\"name\": \"Lowest available memory host\",\n\t\t\t\"options\": {\n\t\t\t\t\"query\": \"index=perfmon (host=*-ess-sen-adf5* OR host=s-ess-sen-sso1* OR host=s-ess-sen-sso2*)\\n| where isnotnull(Available_MBytes)\\n| stats avg(Available_MBytes) as avg_mem by host\\n| sort avg_mem\\n| head 1\\n| eval \\\"Low Mem\\\" = host . \\\" | \\\" . round(avg_mem,0) . \\\" MB\\\"\\n| fields \\\"Low Mem\\\"\",\n\t\t\t\t\"queryParameters\": {\n\t\t\t\t\t\"earliest\": \"$global_time.earliest$\",\n\t\t\t\t\t\"latest\": \"$global_time.latest$\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"type\": \"ds.search\"\n\t\t},\n\t\t\"ds_mem_top\": {\n\t\t\t\"name\": \"Avg available memory by host\",\n\t\t\t\"options\": {\n\t\t\t\t\"query\": \"index=perfmon (host=*-ess-sen-adf5* OR host=s-ess-sen-sso1* OR host=s-ess-sen-sso2*)\\n| where isnotnull(Available_MBytes)\\n| stats avg(Available_MBytes) as avg_mem by host\\n| eval avg_mem = round(avg_mem, 0)\\n| sort - avg_mem\",\n\t\t\t\t\"queryParameters\": {\n\t\t\t\t\t\"earliest\": \"$global_time.earliest$\",\n\t\t\t\t\t\"latest\": \"$global_time.latest$\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"type\": \"ds.search\"\n\t\t},\n\t\t\"ds_memory\": {\n\t\t\t\"name\": \"Memory utilization by host\",\n\t\t\t\"options\": {\n\t\t\t\t\"query\": \"index=perfmon (host=*-ess-sen-adf5* OR host=s-ess-sen-sso1* OR host=s-ess-sen-sso2*)\\n| timechart span=5m avg(Memory_Usage), avg(Available_MBytes) by host\",\n\t\t\t\t\"queryParameters\": {\n\t\t\t\t\t\"earliest\": \"$global_time.earliest$\",\n\t\t\t\t\t\"latest\": \"$global_time.latest$\"\n\t\t\t\t}\n\t\t\t},\n\t\t\t\"type\": \"ds.search\"\n\t\t}\n\t},\n\t\"layout\": {\n\t\t\"globalInputs\": [\n\t\t\t\"input_global_trp\"\n\t\t],\n\t\t\"layoutDefinitions\": {\n\t\t\t\"layout_1\": {\n\t\t\t\t\"options\": {\n\t\t\t\t\t\"display\": \"auto\",\n\t\t\t\t\t\"height\": 1050,\n\t\t\t\t\t\"width\": 2100\n\t\t\t\t},\n\t\t\t\t\"structure\": [\n\t\t\t\t\t{\n\t\t\t\t\t\t\"item\": \"viz_cpu_peak\",\n\t\t\t\t\t\t\"position\": {\n\t\t\t\t\t\t\t\"h\": 100,\n\t\t\t\t\t\t\t\"w\": 1050,\n\t\t\t\t\t\t\t\"x\": 0,\n\t\t\t\t\t\t\t\"y\": 0\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"type\": \"block\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"item\": \"viz_mem_lowest\",\n\t\t\t\t\t\t\"position\": {\n\t\t\t\t\t\t\t\"h\": 100,\n\t\t\t\t\t\t\t\"w\": 1050,\n\t\t\t\t\t\t\t\"x\": 1050,\n\t\t\t\t\t\t\t\"y\": 0\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"type\": \"block\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"item\": \"viz_cpu\",\n\t\t\t\t\t\t\"position\": {\n\t\t\t\t\t\t\t\"h\": 280,\n\t\t\t\t\t\t\t\"w\": 2100,\n\t\t\t\t\t\t\t\"x\": 0,\n\t\t\t\t\t\t\t\"y\": 110\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"type\": \"block\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"item\": \"viz_memory\",\n\t\t\t\t\t\t\"position\": {\n\t\t\t\t\t\t\t\"h\": 280,\n\t\t\t\t\t\t\t\"w\": 2100,\n\t\t\t\t\t\t\t\"x\": 0,\n\t\t\t\t\t\t\t\"y\": 400\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"type\": \"block\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"item\": \"viz_cpu_top\",\n\t\t\t\t\t\t\"position\": {\n\t\t\t\t\t\t\t\"h\": 280,\n\t\t\t\t\t\t\t\"w\": 1050,\n\t\t\t\t\t\t\t\"x\": 0,\n\t\t\t\t\t\t\t\"y\": 690\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"type\": \"block\"\n\t\t\t\t\t},\n\t\t\t\t\t{\n\t\t\t\t\t\t\"item\": \"viz_mem_top\",\n\t\t\t\t\t\t\"position\": {\n\t\t\t\t\t\t\t\"h\": 280,\n\t\t\t\t\t\t\t\"w\": 1050,\n\t\t\t\t\t\t\t\"x\": 1050,\n\t\t\t\t\t\t\t\"y\": 690\n\t\t\t\t\t\t},\n\t\t\t\t\t\t\"type\": \"block\"\n\t\t\t\t\t}\n\t\t\t\t],\n\t\t\t\t\"type\": \"absolute\"\n\t\t\t}\n\t\t},\n\t\t\"tabs\": {\n\t\t\t\"items\": [\n\t\t\t\t{\n\t\t\t\t\t\"label\": \"Server Resources\",\n\t\t\t\t\t\"layoutId\": \"layout_1\"\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t}\n}\n    ]]></definition>\n    <meta type=\"hiddenElements\"><![CDATA[\n{\n\t\"hideEdit\": false,\n\t\"hideOpenInSearch\": false,\n\t\"hideExport\": false\n}\n    ]]></meta>\n</dashboard>",
+        "eai:digest": "a67a2badd703606b91aced58da64a191",
+        "eai:type": "views",
+        "eai:userName": "your-username",
+        "isDashboard": true,
+        "isVisible": true,
+        "label": "ADFS: Server Resource Monitor",
+        "rootNode": "dashboard",
+        "version": "2"
+      }
+    }
+  ],
+  "paging": {
+    "total": 1,
+    "perPage": 30,
+    "offset": 0
+  },
+  "messages": []
+}

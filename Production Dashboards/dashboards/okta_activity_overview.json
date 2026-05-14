@@ -1,0 +1,78 @@
+{
+  "links": {
+    "create": "/servicesNS/your-username/search/data/ui/views/_new",
+    "_reload": "/servicesNS/your-username/search/data/ui/views/_reload",
+    "_acl": "/servicesNS/your-username/search/data/ui/views/_acl"
+  },
+  "origin": "https://127.0.0.1:8089/servicesNS/your-username/search/data/ui/views",
+  "updated": "2026-04-22T09:27:31-04:00",
+  "generator": {
+    "build": "237ebbd22314",
+    "version": "9.4.3"
+  },
+  "entry": [
+    {
+      "name": "okta_activity_overview",
+      "id": "https://127.0.0.1:8089/servicesNS/nobody/search/data/ui/views/okta_activity_overview",
+      "updated": "2026-04-21T13:23:34-04:00",
+      "links": {
+        "alternate": "/servicesNS/nobody/search/data/ui/views/okta_activity_overview",
+        "list": "/servicesNS/nobody/search/data/ui/views/okta_activity_overview",
+        "_reload": "/servicesNS/nobody/search/data/ui/views/okta_activity_overview/_reload",
+        "edit": "/servicesNS/nobody/search/data/ui/views/okta_activity_overview",
+        "remove": "/servicesNS/nobody/search/data/ui/views/okta_activity_overview",
+        "move": "/servicesNS/nobody/search/data/ui/views/okta_activity_overview/move"
+      },
+      "author": "your-username",
+      "acl": {
+        "app": "search",
+        "can_change_perms": true,
+        "can_list": true,
+        "can_share_app": true,
+        "can_share_global": false,
+        "can_share_user": true,
+        "can_write": true,
+        "modifiable": true,
+        "owner": "your-username",
+        "perms": {
+          "read": [
+            "*"
+          ]
+        },
+        "removable": true,
+        "sharing": "app"
+      },
+      "fields": {
+        "required": [
+          "eai:data"
+        ],
+        "optional": [
+          "eai:changelog",
+          "eai:type"
+        ],
+        "wildcard": []
+      },
+      "content": {
+        "description": "Okta authentication activity — sessions, SSO events, failures, top users and apps.",
+        "disabled": false,
+        "eai:acl": null,
+        "eai:appName": "search",
+        "eai:data": "<dashboard version=\"2\" theme=\"light\">\n    <label>Okta Authentication Activity Overview</label>\n    <description>Okta authentication activity — sessions, SSO events, failures, top users and apps.</description>\n    <definition><![CDATA[{\"title\": \"Okta Authentication Activity Overview\", \"description\": \"Okta authentication activity — sessions, SSO events, failures, top users and apps.\", \"inputs\": {\"input_global_trp\": {\"options\": {\"defaultValue\": \"-24h@h,now\", \"token\": \"global_time\"}, \"title\": \"Time Range\", \"type\": \"input.timerange\"}, \"input_outcome\": {\"options\": {\"defaultValue\": \"*\", \"items\": [{\"label\": \"All\", \"value\": \"*\"}, {\"label\": \"Success\", \"value\": \"SUCCESS\"}, {\"label\": \"Failure\", \"value\": \"FAILURE\"}], \"token\": \"outcome\"}, \"title\": \"Outcome\", \"type\": \"input.dropdown\"}, \"input_user\": {\"options\": {\"defaultValue\": \"*\", \"token\": \"user\"}, \"title\": \"User (default: *)\", \"type\": \"input.text\"}}, \"defaults\": {\"dataSources\": {\"ds.search\": {\"options\": {\"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}}}}, \"visualizations\": {\"viz_total_auth\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_total_auth\"}, \"options\": {\"sparklineDisplay\": \"off\", \"trendDisplay\": \"off\"}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Auth Events\", \"type\": \"splunk.singlevalue\", \"description\": \"Total login attempts in the selected time range\"}, \"viz_success\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_success\"}, \"options\": {\"sparklineDisplay\": \"off\", \"trendDisplay\": \"off\", \"majorColor\": \"#3fa21f\"}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Successful Logins\", \"type\": \"splunk.singlevalue\", \"description\": \"Logins that completed successfully\"}, \"viz_failed\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_failed\"}, \"options\": {\"sparklineDisplay\": \"off\", \"trendDisplay\": \"off\", \"majorColor\": \"#c12f28\"}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Failed Logins\", \"type\": \"splunk.singlevalue\", \"description\": \"Logins that didn't make it — wrong password, MFA failure, or blocked\"}, \"viz_sessions\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_sessions\"}, \"options\": {\"sparklineDisplay\": \"off\", \"trendDisplay\": \"off\"}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Session Starts\", \"type\": \"splunk.singlevalue\", \"description\": \"How many times users opened a fresh Okta session\"}, \"viz_timechart\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_timechart\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Authentication Events Over Time\", \"type\": \"splunk.column\", \"description\": \"Login activity over time, broken out by event type\"}, \"viz_top_apps\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_top_apps\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Top Applications\", \"type\": \"splunk.table\", \"description\": \"Which apps are seeing the most login traffic\"}, \"viz_top_users\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_top_users\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Top Users\", \"type\": \"splunk.table\", \"description\": \"Who is logging in the most\"}, \"viz_outcome_pie\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_outcome\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Outcome Breakdown\", \"type\": \"splunk.pie\", \"description\": \"How logins are splitting between success and failure\"}, \"viz_recent\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_recent\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Recent Okta Authentication Events\", \"type\": \"splunk.table\", \"description\": \"The last 100 login events — filter by user above to focus on one person\"}, \"viz_header\": {\"type\": \"splunk.markdown\", \"options\": {\"markdown\": \"A real-time view of authentication activity in Okta. Use the filters above to focus on a specific time range, outcome, or user.\"}, \"containerOptions\": {}, \"showLastUpdated\": false, \"showProgressBar\": false}}, \"dataSources\": {\"ds_total_auth\": {\"name\": \"Total auth events\", \"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log | spath output=username path=\\\"actor.alternateId\\\" | spath output=outcome_result path=\\\"outcome.result\\\" | search eventType=user.authentication.sso OR eventType=user.authentication.auth_via_IDP | search username=\\\"$user$\\\" | search outcome_result=\\\"$outcome$\\\" | stats count AS total\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_success\": {\"name\": \"Successful logins\", \"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log | spath output=username path=\\\"actor.alternateId\\\" | spath output=outcome_result path=\\\"outcome.result\\\" | search eventType=user.authentication.sso OR eventType=user.authentication.auth_via_IDP | search username=\\\"$user$\\\" outcome_result=SUCCESS | stats count AS total\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_failed\": {\"name\": \"Failed logins\", \"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log | spath output=username path=\\\"actor.alternateId\\\" | spath output=outcome_result path=\\\"outcome.result\\\" | search eventType=user.authentication.sso OR eventType=user.authentication.auth_via_IDP | search username=\\\"$user$\\\" outcome_result=FAILURE | stats count AS total\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_sessions\": {\"name\": \"Session starts\", \"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log | spath output=username path=\\\"actor.alternateId\\\" | search eventType=user.session.start | search username=\\\"$user$\\\" | stats count AS total\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_timechart\": {\"name\": \"Auth trend over time\", \"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log | spath output=username path=\\\"actor.alternateId\\\" | spath output=outcome_result path=\\\"outcome.result\\\" | search eventType=user.authentication.sso OR eventType=user.authentication.auth_via_IDP OR eventType=user.session.start OR eventType=policy.evaluate_sign_on | search username=\\\"$user$\\\" | search outcome_result=\\\"$outcome$\\\" | eval event_type=case(eventType=\\\"user.authentication.sso\\\", \\\"SSO Login\\\", eventType=\\\"user.authentication.auth_via_IDP\\\", \\\"Federated Auth (ADFS)\\\", eventType=\\\"user.session.start\\\", \\\"Session Start\\\", eventType=\\\"policy.evaluate_sign_on\\\", \\\"Policy Evaluation\\\", true(), eventType) | timechart span=1h count by event_type\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_top_apps\": {\"name\": \"Top applications\", \"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log | spath output=username path=\\\"actor.alternateId\\\" | spath output=outcome_result path=\\\"outcome.result\\\" | spath output=app path=\\\"target{0}.displayName\\\" | search eventType=user.authentication.sso OR eventType=user.authentication.auth_via_IDP | search username=\\\"$user$\\\" | search outcome_result=\\\"$outcome$\\\" | spath output=username path=\\\"actor.alternateId\\\" | where isnotnull(app) AND app!=\\\"\\\" | eval app=case(app=\\\"unknown\\\",\\\"Okta → ADFS Federation Probe\\\", app=\\\"SAML 2.0 IdP\\\" AND username=\\\"system@okta.com\\\",\\\"Okta Health Check\\\",1=1,app) | stats count by app | sort -count | head 15\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_top_users\": {\"name\": \"Top users\", \"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log | spath output=username path=\\\"actor.alternateId\\\" | spath output=outcome_result path=\\\"outcome.result\\\" | search eventType=user.authentication.sso OR eventType=user.authentication.auth_via_IDP OR eventType=user.session.start | search username=\\\"$user$\\\" | search outcome_result=\\\"$outcome$\\\" | eval username=if(username=\\\"system@okta.com\\\",\\\"Okta System\\\",username) | search username!=\\\"\\\" | stats count by username | sort -count | head 15\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_outcome\": {\"name\": \"Outcome breakdown\", \"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log | spath output=username path=\\\"actor.alternateId\\\" | spath output=outcome_result path=\\\"outcome.result\\\" | search eventType=user.authentication.sso OR eventType=user.authentication.auth_via_IDP OR eventType=user.session.start | search username=\\\"$user$\\\" | search outcome_result=* | stats count by outcome_result\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_recent\": {\"name\": \"Recent auth events\", \"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log | spath output=username path=\\\"actor.alternateId\\\" | spath output=outcome_result path=\\\"outcome.result\\\" | spath output=app path=\\\"target{0}.displayName\\\" | spath output=client_ip path=\\\"client.ipAddress\\\" | spath output=sign_on_mode path=\\\"debugContext.debugData.signOnMode\\\" | search eventType=user.authentication.sso OR eventType=user.authentication.auth_via_IDP OR eventType=user.session.start | search username=\\\"$user$\\\" | search outcome_result=\\\"$outcome$\\\" | where app!=\\\"SAML 2.0 IdP\\\" AND app!=\\\"UKG Kronos_Test\\\" | eval username=if(username=\\\"system@okta.com\\\",\\\"Okta System\\\",username) | search username!=\\\"\\\" | eval idp=case(eventType=\\\"user.authentication.auth_via_IDP\\\",\\\"ADFS → Okta\\\",1=1,\\\"Okta\\\") | table _time, username, eventType, app, idp, outcome_result, client_ip | sort -_time | head 100\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}}, \"layout\": {\"globalInputs\": [\"input_global_trp\", \"input_outcome\", \"input_user\"], \"layoutDefinitions\": {\"layout_1\": {\"options\": {\"display\": \"auto\", \"height\": 1440, \"width\": 2100}, \"structure\": [{\"item\": \"viz_header\", \"type\": \"block\", \"position\": {\"x\": 0, \"y\": 0, \"w\": 2100, \"h\": 50}}, {\"item\": \"viz_total_auth\", \"position\": {\"h\": 160, \"w\": 510, \"x\": 0, \"y\": 60}, \"type\": \"block\"}, {\"item\": \"viz_success\", \"position\": {\"h\": 160, \"w\": 510, \"x\": 520, \"y\": 60}, \"type\": \"block\"}, {\"item\": \"viz_failed\", \"position\": {\"h\": 160, \"w\": 510, \"x\": 1040, \"y\": 60}, \"type\": \"block\"}, {\"item\": \"viz_sessions\", \"position\": {\"h\": 160, \"w\": 540, \"x\": 1560, \"y\": 60}, \"type\": \"block\"}, {\"item\": \"viz_timechart\", \"position\": {\"h\": 380, \"w\": 2100, \"x\": 0, \"y\": 230}, \"type\": \"block\"}, {\"item\": \"viz_top_apps\", \"position\": {\"h\": 380, \"w\": 690, \"x\": 0, \"y\": 620}, \"type\": \"block\"}, {\"item\": \"viz_top_users\", \"position\": {\"h\": 380, \"w\": 690, \"x\": 700, \"y\": 620}, \"type\": \"block\"}, {\"item\": \"viz_outcome_pie\", \"position\": {\"h\": 380, \"w\": 700, \"x\": 1400, \"y\": 620}, \"type\": \"block\"}, {\"item\": \"viz_recent\", \"position\": {\"h\": 430, \"w\": 2100, \"x\": 0, \"y\": 1010}, \"type\": \"block\"}], \"type\": \"absolute\"}}, \"tabs\": {\"items\": [{\"label\": \"Activity Overview\", \"layoutId\": \"layout_1\"}]}}}]]></definition>\n    <meta type=\"hiddenElements\"><![CDATA[\n{\n\t\"hideEdit\": false,\n\t\"hideOpenInSearch\": false,\n\t\"hideExport\": false\n}\n    ]]></meta>\n</dashboard>",
+        "eai:digest": "623f8c5dec902741ae0d5a3893b6da41",
+        "eai:type": "views",
+        "eai:userName": "your-username",
+        "isDashboard": true,
+        "isVisible": true,
+        "label": "Okta Authentication Activity Overview",
+        "rootNode": "dashboard",
+        "version": "2"
+      }
+    }
+  ],
+  "paging": {
+    "total": 1,
+    "perPage": 30,
+    "offset": 0
+  },
+  "messages": []
+}

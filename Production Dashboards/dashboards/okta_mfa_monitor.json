@@ -1,0 +1,74 @@
+{
+  "links": {
+    "create": "/servicesNS/your-username/search/data/ui/views/_new",
+    "_reload": "/servicesNS/your-username/search/data/ui/views/_reload",
+    "_acl": "/servicesNS/your-username/search/data/ui/views/_acl"
+  },
+  "origin": "https://127.0.0.1:8089/servicesNS/your-username/search/data/ui/views",
+  "updated": "2026-04-17T14:28:57-04:00",
+  "generator": {
+    "build": "237ebbd22314",
+    "version": "9.4.3"
+  },
+  "entry": [
+    {
+      "name": "okta_mfa_monitor",
+      "id": "https://127.0.0.1:8089/servicesNS/your-username/search/data/ui/views/okta_policy_mfa_monitor",
+      "updated": "2026-04-17T14:08:38-04:00",
+      "links": {
+        "alternate": "/servicesNS/your-username/search/data/ui/views/okta_policy_mfa_monitor",
+        "list": "/servicesNS/your-username/search/data/ui/views/okta_policy_mfa_monitor",
+        "_reload": "/servicesNS/your-username/search/data/ui/views/okta_policy_mfa_monitor/_reload",
+        "edit": "/servicesNS/your-username/search/data/ui/views/okta_policy_mfa_monitor",
+        "remove": "/servicesNS/your-username/search/data/ui/views/okta_policy_mfa_monitor",
+        "move": "/servicesNS/your-username/search/data/ui/views/okta_policy_mfa_monitor/move"
+      },
+      "author": "your-username",
+      "acl": {
+        "app": "search",
+        "can_change_perms": true,
+        "can_list": true,
+        "can_share_app": true,
+        "can_share_global": false,
+        "can_share_user": true,
+        "can_write": true,
+        "modifiable": true,
+        "owner": "your-username",
+        "perms": null,
+        "removable": true,
+        "sharing": "user"
+      },
+      "fields": {
+        "required": [
+          "eai:data"
+        ],
+        "optional": [
+          "eai:changelog",
+          "eai:type"
+        ],
+        "wildcard": []
+      },
+      "content": {
+        "description": "Sign-on policy evaluations, routing rule hits, MFA factor usage and failures.",
+        "disabled": false,
+        "eai:acl": null,
+        "eai:appName": "search",
+        "eai:data": "<dashboard version=\"2\" theme=\"light\">\n    <label>Okta: MFA Monitor</label>\n    <description>MFA challenge outcomes, factor usage breakdown, failures by user, and enrollment activity.</description>\n    <definition><![CDATA[{\"title\": \"Okta: MFA Monitor\", \"description\": \"MFA challenge outcomes, factor usage breakdown, failures by user, and enrollment activity.\", \"inputs\": {\"input_global_trp\": {\"options\": {\"defaultValue\": \"-24h@h,now\", \"token\": \"global_time\"}, \"title\": \"Time Range\", \"type\": \"input.timerange\"}}, \"defaults\": {\"dataSources\": {\"ds.search\": {\"options\": {\"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}}}}, \"visualizations\": {\"viz_mfa_total\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_mfa_total\"}, \"options\": {\"sparklineDisplay\": \"off\", \"trendDisplay\": \"off\"}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"MFA Challenges\", \"type\": \"splunk.singlevalue\"}, \"viz_mfa_fail\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_mfa_fail\"}, \"options\": {\"sparklineDisplay\": \"off\", \"trendDisplay\": \"off\", \"majorColor\": \"#c12f28\"}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Failures\", \"type\": \"splunk.singlevalue\"}, \"viz_mfa_abandon\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_mfa_abandon\"}, \"options\": {\"sparklineDisplay\": \"off\", \"trendDisplay\": \"off\", \"majorColor\": \"#d06a00\"}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Abandoned\", \"type\": \"splunk.singlevalue\"}, \"viz_mfa_rate\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_mfa_rate\"}, \"options\": {\"sparklineDisplay\": \"off\", \"trendDisplay\": \"off\", \"majorColor\": \"#c12f28\"}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Failure Rate %\", \"type\": \"splunk.singlevalue\"}, \"viz_mfa_trend\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_mfa_trend\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"MFA Challenges Over Time\", \"type\": \"splunk.column\"}, \"viz_factor_pie\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_factor_pie\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Factor Breakdown\", \"type\": \"splunk.pie\"}, \"viz_fail_detail\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_fail_detail\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Failures by User & Factor\", \"type\": \"splunk.table\"}, \"viz_enrollment\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_enrollment\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Enrollment Activity\", \"type\": \"splunk.table\"}, \"viz_recent_fail\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_recent_fail\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Recent MFA Failures\", \"type\": \"splunk.table\"}}, \"dataSources\": {\"ds_mfa_total\": {\"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log eventType=user.authentication.auth_via_mfa | stats count AS total\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_mfa_fail\": {\"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log eventType=user.authentication.auth_via_mfa | spath output=outcome path=\\\"outcome.result\\\" | where outcome=\\\"FAILURE\\\" | stats count AS total\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_mfa_abandon\": {\"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log eventType=user.authentication.auth_via_mfa | spath output=outcome path=\\\"outcome.result\\\" | where outcome IN (\\\"ABANDONED\\\",\\\"UNANSWERED\\\") | stats count AS total\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_mfa_rate\": {\"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log eventType=user.authentication.auth_via_mfa | spath output=outcome path=\\\"outcome.result\\\" | stats count as total sum(eval(if(outcome=\\\"FAILURE\\\",1,0))) as fails | eval rate=if(total>0,round(fails/total*100,1),0) | table rate\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_mfa_trend\": {\"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log eventType=user.authentication.auth_via_mfa | spath output=outcome path=\\\"outcome.result\\\" | eval success=if(outcome=\\\"SUCCESS\\\",1,0) | eval fail=if(outcome=\\\"FAILURE\\\",1,0) | eval abandon=if(outcome IN (\\\"ABANDONED\\\",\\\"UNANSWERED\\\"),1,0) | timechart span=1d sum(success) AS Success sum(fail) AS Failures sum(abandon) AS Abandoned\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_factor_pie\": {\"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log eventType=user.authentication.auth_via_mfa | spath output=factor path=\\\"debugContext.debugData.factor\\\" | eval factor=case(lower(factor)=\\\"push\\\" OR factor=\\\"OKTA_VERIFY_PUSH\\\",\\\"Okta Verify Push\\\",lower(factor)=\\\"signed_nonce\\\" OR factor=\\\"SIGNED_NONCE\\\",\\\"Passkey / FIDO2\\\",factor=\\\"PASSWORD_AS_FACTOR\\\",\\\"Password\\\",factor=\\\"OKTA_SOFT_TOKEN\\\",\\\"TOTP\\\",isnotnull(factor),factor,1=1,\\\"Unknown\\\") | stats count by factor | rename factor AS Factor, count AS Count\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_fail_detail\": {\"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log eventType=user.authentication.auth_via_mfa | spath output=factor path=\\\"debugContext.debugData.factor\\\" | spath output=outcome path=\\\"outcome.result\\\" | spath output=actor path=\\\"actor.alternateId\\\" | where outcome!=\\\"SUCCESS\\\" | eval factor=case(lower(factor)=\\\"push\\\" OR factor=\\\"OKTA_VERIFY_PUSH\\\",\\\"Okta Verify Push\\\",lower(factor)=\\\"signed_nonce\\\" OR factor=\\\"SIGNED_NONCE\\\",\\\"Passkey / FIDO2\\\",factor=\\\"PASSWORD_AS_FACTOR\\\",\\\"Password\\\",factor=\\\"OKTA_SOFT_TOKEN\\\",\\\"TOTP\\\",isnotnull(factor),factor,1=1,\\\"Unknown\\\") | stats count as failures by actor, factor, outcome | sort -failures | head 20 | rename actor AS User, factor AS Factor, outcome AS Outcome, failures AS Failures\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_enrollment\": {\"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log eventType IN (user.mfa.factor.activate,user.mfa.factor.deactivate,user.mfa.factor.reset_all) | spath output=actor path=\\\"actor.alternateId\\\" | eval action=case(eventType=\\\"user.mfa.factor.activate\\\",\\\"Enrolled\\\",eventType=\\\"user.mfa.factor.deactivate\\\",\\\"Deactivated\\\",eventType=\\\"user.mfa.factor.reset_all\\\",\\\"Reset All\\\",1=1,eventType) | stats count by actor, action | sort -count | head 20 | rename actor AS User, action AS Action, count AS Count\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_recent_fail\": {\"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log eventType=user.authentication.auth_via_mfa | spath output=factor path=\\\"debugContext.debugData.factor\\\" | spath output=outcome path=\\\"outcome.result\\\" | spath output=actor path=\\\"actor.alternateId\\\" | spath output=app path=\\\"target{0}.displayName\\\" | where outcome!=\\\"SUCCESS\\\" | eval factor=case(lower(factor)=\\\"push\\\" OR factor=\\\"OKTA_VERIFY_PUSH\\\",\\\"Okta Verify Push\\\",lower(factor)=\\\"signed_nonce\\\" OR factor=\\\"SIGNED_NONCE\\\",\\\"Passkey / FIDO2\\\",factor=\\\"PASSWORD_AS_FACTOR\\\",\\\"Password\\\",factor=\\\"OKTA_SOFT_TOKEN\\\",\\\"TOTP\\\",isnotnull(factor),factor,1=1,\\\"Unknown\\\") | eval time=strftime(_time,\\\"%Y-%m-%d %H:%M\\\") | table time, actor, app, factor, outcome | sort -time | head 25 | rename time AS Time, actor AS User, app AS Application, factor AS Factor, outcome AS Outcome\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}}, \"layout\": {\"globalInputs\": [\"input_global_trp\"], \"layoutDefinitions\": {\"layout_1\": {\"options\": {\"display\": \"auto\", \"height\": 1310, \"width\": 2100}, \"structure\": [{\"item\": \"viz_mfa_total\", \"position\": {\"h\": 160, \"w\": 510, \"x\": 0, \"y\": 0}, \"type\": \"block\"}, {\"item\": \"viz_mfa_fail\", \"position\": {\"h\": 160, \"w\": 510, \"x\": 520, \"y\": 0}, \"type\": \"block\"}, {\"item\": \"viz_mfa_abandon\", \"position\": {\"h\": 160, \"w\": 510, \"x\": 1040, \"y\": 0}, \"type\": \"block\"}, {\"item\": \"viz_mfa_rate\", \"position\": {\"h\": 160, \"w\": 540, \"x\": 1560, \"y\": 0}, \"type\": \"block\"}, {\"item\": \"viz_mfa_trend\", \"position\": {\"h\": 360, \"w\": 2100, \"x\": 0, \"y\": 170}, \"type\": \"block\"}, {\"item\": \"viz_factor_pie\", \"position\": {\"h\": 380, \"w\": 700, \"x\": 0, \"y\": 540}, \"type\": \"block\"}, {\"item\": \"viz_fail_detail\", \"position\": {\"h\": 380, \"w\": 1390, \"x\": 710, \"y\": 540}, \"type\": \"block\"}, {\"item\": \"viz_enrollment\", \"position\": {\"h\": 360, \"w\": 1040, \"x\": 0, \"y\": 930}, \"type\": \"block\"}, {\"item\": \"viz_recent_fail\", \"position\": {\"h\": 360, \"w\": 1050, \"x\": 1050, \"y\": 930}, \"type\": \"block\"}], \"type\": \"absolute\"}}, \"tabs\": {\"items\": [{\"label\": \"MFA Monitor\", \"layoutId\": \"layout_1\"}]}}}]]></definition>\n    <meta type=\"hiddenElements\"><![CDATA[\n{\n\t\"hideEdit\": false,\n\t\"hideOpenInSearch\": false,\n\t\"hideExport\": false\n}\n    ]]></meta>\n</dashboard>",
+        "eai:digest": "b9de1d3b1cd5493db2f33981bcb3adad",
+        "eai:type": "views",
+        "eai:userName": "your-username",
+        "isDashboard": true,
+        "isVisible": true,
+        "label": "Okta: Policy & MFA Monitor",
+        "rootNode": "dashboard",
+        "version": "2"
+      }
+    }
+  ],
+  "paging": {
+    "total": 1,
+    "perPage": 30,
+    "offset": 0
+  },
+  "messages": []
+}

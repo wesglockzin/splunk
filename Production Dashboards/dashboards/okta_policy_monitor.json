@@ -1,0 +1,74 @@
+{
+  "links": {
+    "create": "/servicesNS/your-username/search/data/ui/views/_new",
+    "_reload": "/servicesNS/your-username/search/data/ui/views/_reload",
+    "_acl": "/servicesNS/your-username/search/data/ui/views/_acl"
+  },
+  "origin": "https://127.0.0.1:8089/servicesNS/your-username/search/data/ui/views",
+  "updated": "2026-04-17T14:28:57-04:00",
+  "generator": {
+    "build": "237ebbd22314",
+    "version": "9.4.3"
+  },
+  "entry": [
+    {
+      "name": "okta_policy_monitor",
+      "id": "https://127.0.0.1:8089/servicesNS/your-username/search/data/ui/views/okta_policy_mfa_monitor",
+      "updated": "2026-04-17T14:08:38-04:00",
+      "links": {
+        "alternate": "/servicesNS/your-username/search/data/ui/views/okta_policy_mfa_monitor",
+        "list": "/servicesNS/your-username/search/data/ui/views/okta_policy_mfa_monitor",
+        "_reload": "/servicesNS/your-username/search/data/ui/views/okta_policy_mfa_monitor/_reload",
+        "edit": "/servicesNS/your-username/search/data/ui/views/okta_policy_mfa_monitor",
+        "remove": "/servicesNS/your-username/search/data/ui/views/okta_policy_mfa_monitor",
+        "move": "/servicesNS/your-username/search/data/ui/views/okta_policy_mfa_monitor/move"
+      },
+      "author": "your-username",
+      "acl": {
+        "app": "search",
+        "can_change_perms": true,
+        "can_list": true,
+        "can_share_app": true,
+        "can_share_global": false,
+        "can_share_user": true,
+        "can_write": true,
+        "modifiable": true,
+        "owner": "your-username",
+        "perms": null,
+        "removable": true,
+        "sharing": "user"
+      },
+      "fields": {
+        "required": [
+          "eai:data"
+        ],
+        "optional": [
+          "eai:changelog",
+          "eai:type"
+        ],
+        "wildcard": []
+      },
+      "content": {
+        "description": "Sign-on policy evaluations, routing rule hits, MFA factor usage and failures.",
+        "disabled": false,
+        "eai:acl": null,
+        "eai:appName": "search",
+        "eai:data": "<dashboard version=\"2\" theme=\"light\">\n    <label>Okta: Policy Monitor</label>\n    <description>Auth policy evaluations, MFA challenge triggers, and IDP-authenticated sessions.</description>\n    <definition><![CDATA[{\"title\": \"Okta: Policy Monitor\", \"description\": \"Auth policy evaluations, MFA challenge triggers, and IDP-authenticated sessions.\", \"inputs\": {\"input_global_trp\": {\"options\": {\"defaultValue\": \"-24h@h,now\", \"token\": \"global_time\"}, \"title\": \"Time Range\", \"type\": \"input.timerange\"}}, \"defaults\": {\"dataSources\": {\"ds.search\": {\"options\": {\"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}}}}, \"visualizations\": {\"viz_policy_evals\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_policy_evals\"}, \"options\": {\"sparklineDisplay\": \"off\", \"trendDisplay\": \"off\"}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Policy Evaluations\", \"type\": \"splunk.singlevalue\"}, \"viz_mfa_challenges\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_mfa_challenges\"}, \"options\": {\"sparklineDisplay\": \"off\", \"trendDisplay\": \"off\"}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"MFA Challenges\", \"type\": \"splunk.singlevalue\"}, \"viz_challenge_rate\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_challenge_rate\"}, \"options\": {\"sparklineDisplay\": \"off\", \"trendDisplay\": \"off\"}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Challenge Rate %\", \"type\": \"splunk.singlevalue\"}, \"viz_policy_denies\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_policy_denies\"}, \"options\": {\"sparklineDisplay\": \"off\", \"trendDisplay\": \"off\", \"majorColor\": \"#c12f28\"}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Policy Denies\", \"type\": \"splunk.singlevalue\"}, \"viz_policy_trend\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_policy_trend\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Policy Evaluations Over Time\", \"type\": \"splunk.column\"}, \"viz_app_rule\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_app_rule\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"Application \\u00d7 Policy Rule\", \"type\": \"splunk.table\"}, \"viz_mfa_by_rule\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_mfa_by_rule\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"MFA Required by Policy Rule\", \"type\": \"splunk.table\"}, \"viz_idp_activity\": {\"containerOptions\": {}, \"dataSources\": {\"primary\": \"ds_idp_activity\"}, \"options\": {}, \"showLastUpdated\": false, \"showProgressBar\": false, \"title\": \"IDP-Authenticated Sessions\", \"type\": \"splunk.table\"}}, \"dataSources\": {\"ds_policy_evals\": {\"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log eventType=policy.evaluate_sign_on | stats count AS total\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_mfa_challenges\": {\"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log eventType=policy.evaluate_sign_on | spath output=outcome path=\\\"outcome.result\\\" | where outcome=\\\"CHALLENGE\\\" | stats count AS total\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_challenge_rate\": {\"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log eventType=policy.evaluate_sign_on | spath output=outcome path=\\\"outcome.result\\\" | stats count as evals sum(eval(if(outcome=\\\"CHALLENGE\\\",1,0))) as challenges | eval rate=if(evals>0,round(challenges/evals*100,1),0) | table rate\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_policy_denies\": {\"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log eventType=policy.evaluate_sign_on | spath output=outcome path=\\\"outcome.result\\\" | where outcome=\\\"DENY\\\" | stats count AS total\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_policy_trend\": {\"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log eventType=policy.evaluate_sign_on | spath output=outcome path=\\\"outcome.result\\\" | eval is_challenge=if(outcome=\\\"CHALLENGE\\\",1,0) | timechart span=1d count AS Evaluations sum(is_challenge) AS \\\"MFA Challenges\\\"\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_app_rule\": {\"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log eventType=policy.evaluate_sign_on | spath output=outcome_result path=\\\"outcome.result\\\" | spath output=targets path=\\\"target{}\\\" | mvexpand targets | spath input=targets output=target_type path=\\\"type\\\" | spath input=targets output=target_name path=\\\"displayName\\\" | stats values(eval(if(target_type=\\\"AppInstance\\\",target_name,null()))) as App values(eval(if(target_type=\\\"Rule\\\",target_name,null()))) as Rule count as Evals sum(eval(if(outcome_result=\\\"CHALLENGE\\\",1,0))) as Challenges sum(eval(if(outcome_result=\\\"DENY\\\",1,0))) as Denies by _cd | stats sum(Evals) as Evals sum(Challenges) as Challenges sum(Denies) as Denies by App, Rule | where isnotnull(App) AND App!=\\\"\\\" | sort -Evals | rename App AS Application, Rule AS \\\"Policy Rule\\\", Evals AS Evaluations, Challenges AS \\\"MFA Challenges\\\"\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_mfa_by_rule\": {\"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log eventType=policy.evaluate_sign_on | spath output=targets path=\\\"target{}\\\" | mvexpand targets | spath input=targets output=target_type path=\\\"type\\\" | spath input=targets output=target_name path=\\\"displayName\\\" | eval cd=_cd | stats values(eval(if(target_type=\\\"Rule\\\",target_name,null()))) as Rule values(eval(if(target_type=\\\"AuthenticatorMethod\\\",target_name,null()))) as Authenticator by cd | where isnotnull(Authenticator) AND Authenticator!=\\\"\\\" | stats count as Challenges by Rule, Authenticator | sort -Challenges | rename Rule AS \\\"Policy Rule\\\"\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}, \"ds_idp_activity\": {\"options\": {\"query\": \"index=okta sourcetype=OktaIM2:log eventType=user.authentication.auth_via_IDP | spath output=actor path=\\\"actor.alternateId\\\" | spath output=app path=\\\"target{0}.displayName\\\" | spath output=outcome path=\\\"outcome.result\\\" | stats count as Sessions max(_time) as last_seen by actor, app, outcome | eval last_seen=strftime(last_seen,\\\"%Y-%m-%d %H:%M\\\") | sort -Sessions | head 25 | rename actor AS User, app AS Application, outcome AS Outcome, last_seen AS \\\"Last Seen\\\"\", \"queryParameters\": {\"earliest\": \"$global_time.earliest$\", \"latest\": \"$global_time.latest$\"}}, \"type\": \"ds.search\"}}, \"layout\": {\"globalInputs\": [\"input_global_trp\"], \"layoutDefinitions\": {\"layout_1\": {\"options\": {\"display\": \"auto\", \"height\": 1310, \"width\": 2100}, \"structure\": [{\"item\": \"viz_policy_evals\", \"position\": {\"h\": 160, \"w\": 510, \"x\": 0, \"y\": 0}, \"type\": \"block\"}, {\"item\": \"viz_mfa_challenges\", \"position\": {\"h\": 160, \"w\": 510, \"x\": 520, \"y\": 0}, \"type\": \"block\"}, {\"item\": \"viz_challenge_rate\", \"position\": {\"h\": 160, \"w\": 510, \"x\": 1040, \"y\": 0}, \"type\": \"block\"}, {\"item\": \"viz_policy_denies\", \"position\": {\"h\": 160, \"w\": 540, \"x\": 1560, \"y\": 0}, \"type\": \"block\"}, {\"item\": \"viz_policy_trend\", \"position\": {\"h\": 360, \"w\": 2100, \"x\": 0, \"y\": 170}, \"type\": \"block\"}, {\"item\": \"viz_app_rule\", \"position\": {\"h\": 380, \"w\": 1040, \"x\": 0, \"y\": 540}, \"type\": \"block\"}, {\"item\": \"viz_mfa_by_rule\", \"position\": {\"h\": 380, \"w\": 1050, \"x\": 1050, \"y\": 540}, \"type\": \"block\"}, {\"item\": \"viz_idp_activity\", \"position\": {\"h\": 360, \"w\": 2100, \"x\": 0, \"y\": 930}, \"type\": \"block\"}], \"type\": \"absolute\"}}, \"tabs\": {\"items\": [{\"label\": \"Policy Monitor\", \"layoutId\": \"layout_1\"}]}}}]]></definition>\n    <meta type=\"hiddenElements\"><![CDATA[\n{\n\t\"hideEdit\": false,\n\t\"hideOpenInSearch\": false,\n\t\"hideExport\": false\n}\n    ]]></meta>\n</dashboard>",
+        "eai:digest": "b9de1d3b1cd5493db2f33981bcb3adad",
+        "eai:type": "views",
+        "eai:userName": "your-username",
+        "isDashboard": true,
+        "isVisible": true,
+        "label": "Okta: Policy & MFA Monitor",
+        "rootNode": "dashboard",
+        "version": "2"
+      }
+    }
+  ],
+  "paging": {
+    "total": 1,
+    "perPage": 30,
+    "offset": 0
+  },
+  "messages": []
+}

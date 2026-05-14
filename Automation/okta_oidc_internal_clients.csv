@@ -1,0 +1,16 @@
+client_id,label,internal,reason
+okta.00000000-0000-0000-0000-000000000000,Okta Admin Console,yes,Okta-system: admin UI client
+okta.00000000-0000-0000-0000-000000000000,Okta Dashboard,yes,Okta-system: end-user dashboard client
+okta.00000000-0000-0000-0000-000000000000,Okta Browser Plugin,yes,Okta-system: browser plugin client
+okta.00000000-0000-0000-0000-000000000000,Okta Authenticator,yes,Okta-system: authenticator client
+0oaEXAMPLE00EXAMPLE0,Okta Admin Console,yes,Okta-system: admin UI app
+0oaEXAMPLE00EXAMPLE0,Okta Browser Plugin,yes,Okta-system: browser plugin app
+0oaEXAMPLE00EXAMPLE0,Okta Dashboard,yes,Okta-system: dashboard app
+0oaEXAMPLE00EXAMPLE0,Okta Workflows,yes,Okta-system: Workflows engine
+0oaEXAMPLE00EXAMPLE0,Okta Workflows OAuth,yes,Okta-system: Workflows OAuth callback
+0oaEXAMPLE00EXAMPLE0,Stage Okta Connector,yes,Internal integration: stage env Okta connector
+0oaEXAMPLE00EXAMPLE0,Prod Okta Connector,yes,Internal integration: prod env Okta connector
+0oaEXAMPLE00EXAMPLE0,AD Group API - Stage,yes,Internal integration: AD group sync API
+0oaEXAMPLE00EXAMPLE0,Okta Admin Tools,yes,IAM admin fleet auth client (Okta Change Auditor / SAML Parser / FICA / Okta Admin / OIN / ADFS Migration / Okta Migration Realtime)
+0oaEXAMPLE00EXAMPLE0,SSO Migration Schedule,yes,Schedule tracker dashboard auth client
+0oaEXAMPLE00EXAMPLE0,SSO Migration Schedule (alt),yes,Schedule tracker auth client (duplicate display name)
